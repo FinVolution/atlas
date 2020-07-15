@@ -1,0 +1,35 @@
+[
+  {
+    "name": "org1",
+    "parentOrgId": 1,
+    "ownerUserName": "xia",
+    "ownerRealName": "tianxiaoxia",
+    "extensions": {
+      "c1": "v1",
+      "c2": "v2"
+    },
+    "description": "just for test"
+  },
+  {
+    "name": "org2",
+    "parentOrgId": 2,
+    "ownerUserName": "xia",
+    "ownerRealName": "tianxiaoxia",
+    "extensions": {
+      "c3": "v3",
+      "c4": "v4"
+    },
+    "description": "just for test"
+  },
+  {
+    "name": "org3",
+    "parentOrgId": 3,
+    "ownerUserName": "xia",
+    "ownerRealName": "tianxiaoxia",
+    "extensions": {
+      "c5": "v5",
+      "c6": "v6"
+    },
+    "description": "just for test"
+  }
+]

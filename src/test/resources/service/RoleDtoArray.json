@@ -1,0 +1,26 @@
+[
+  {
+    "name": "role1",
+    "extensions": {
+      "c1": "v1",
+      "c2": "v2"
+    },
+    "description": "just for test"
+  },
+  {
+    "name": "role2",
+    "extensions": {
+      "c3": "v3",
+      "c4": "v4"
+    },
+    "description": ""
+  },
+  {
+    "name": "role3",
+    "extensions": {
+      "c5": "v5",
+      "c6": "v6"
+    },
+    "description": ""
+  }
+]

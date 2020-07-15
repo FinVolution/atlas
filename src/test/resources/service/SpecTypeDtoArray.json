@@ -1,0 +1,35 @@
+[
+  {
+    "name": "specType1",
+    "cpu": 1,
+    "memory": 100,
+    "disk": 100,
+    "extensions": {
+      "c1": "v1",
+      "c2": "v2"
+    },
+    "description": "just for test"
+  },
+  {
+    "name": "specType2",
+    "cpu": 2,
+    "memory": 200,
+    "disk": 200,
+    "extensions": {
+      "c3": "v3",
+      "c4": "v4"
+    },
+    "description": ""
+  },
+  {
+    "name": "specType3",
+    "cpu": 3,
+    "memory": 300,
+    "disk": 300,
+    "extensions": {
+      "c5": "v5",
+      "c6": "v6"
+    },
+    "description": ""
+  }
+]

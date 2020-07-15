@@ -1,0 +1,71 @@
+[
+  {
+    "realName": "user1",
+    "userName": "user1",
+    "workNumber": "1",
+    "orgId": 1,
+    "orgDto": {
+      "name": "org1",
+      "parentOrgId": 1,
+      "ownerUserName": "xia",
+      "ownerRealName": "tianxiaoxia",
+      "extensions": {
+        "c1": "v1",
+        "c2": "v2"
+      },
+      "description": "just for test"
+    },
+    "email": "xx#@11.com",
+    "extensions": {
+      "c1": "v1",
+      "c2": "v2"
+    },
+    "description": "just for test"
+  },
+  {
+    "realName": "user2",
+    "userName": "user2",
+    "workNumber": "2",
+    "orgId": 2,
+    "orgDto": {
+      "name": "org2",
+      "parentOrgId": 1,
+      "ownerUserName": "xia",
+      "ownerRealName": "tianxiaoxia",
+      "extensions": {
+        "c1": "v1",
+        "c2": "v2"
+      },
+      "description": "just for test"
+    },
+    "email": "xx#@12.com",
+    "extensions": {
+      "c3": "v3",
+      "c4": "v4"
+    },
+    "description": ""
+  },
+  {
+    "realName": "user3",
+    "userName": "user3",
+    "workNumber": "3",
+    "orgId": 3,
+    "orgDto": {
+      "name": "org3",
+      "parentOrgId": 3,
+      "ownerUserName": "xia",
+      "ownerRealName": "tianxiaoxia",
+      "extensions": {
+        "c1": "v1",
+        "c2": "v2"
+      },
+      "description": "just for test"
+    },
+    "email": "xx#@13.com",
+    "extensions": {
+      "c5": "v5",
+      "c6": "v6"
+    },
+    "description": ""
+  }
+]

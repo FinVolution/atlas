@@ -1,0 +1,9 @@
+{
+  "name": "apptest2",
+  "appId": "2018121320",
+  "appType": "SpringBoot",
+  "serviceType": "服务提供",
+  "orgId": 33,
+  "userWorkNumber": "009061",
+  "tests": "001419"
+}

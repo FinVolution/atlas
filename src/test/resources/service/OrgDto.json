@@ -1,0 +1,8 @@
+{
+  "name": "org1",
+  "parentOrgId": 1,
+  "ownerUserName": "xia",
+  "ownerRealName": "tianxiaoxia",
+  "extensions": {"c1":"v1","c2":"v2"},
+  "description": "just for test"
+}

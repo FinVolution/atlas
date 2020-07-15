@@ -1,0 +1,11 @@
+{
+  "name": "specType1",
+  "cpu": 1,
+  "memory": 100,
+  "disk": 100,
+  "extensions": {
+    "c1": "v1",
+    "c2": "v2"
+  },
+  "description": "just for test"
+}

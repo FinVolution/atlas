@@ -1,0 +1,5834 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1-SNAPSHOT",
+    "title": "atlas",
+    "x-appId": "1000001128",
+    "x-serviceName": "atlas"
+  },
+  "host": "localhost:8081",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "app-quota-controller",
+      "description": "App Quota Controller"
+    },
+    {
+      "name": "hs-controller",
+      "description": "HS Controller"
+    },
+    {
+      "name": "org-controller",
+      "description": "Org Controller"
+    },
+    {
+      "name": "user-ext-controller",
+      "description": "User Ext Controller"
+    },
+    {
+      "name": "role-controller",
+      "description": "Role Controller"
+    },
+    {
+      "name": "zone-controller",
+      "description": "Zone Controller"
+    },
+    {
+      "name": "spec-type-controller",
+      "description": "Spec Type Controller"
+    },
+    {
+      "name": "env-controller",
+      "description": "Env Controller"
+    },
+    {
+      "name": "user-role-controller",
+      "description": "User Role Controller"
+    },
+    {
+      "name": "quota-controller",
+      "description": "Quota Controller"
+    },
+    {
+      "name": "user-controller",
+      "description": "User Controller"
+    },
+    {
+      "name": "app-controller",
+      "description": "App Controller"
+    },
+    {
+      "name": "apply-controller",
+      "description": "Apply Controller"
+    }
+  ],
+  "paths": {
+    "/hs": {
+      "get": {
+        "tags": [
+          "hs-controller"
+        ],
+        "summary": "healthcheck",
+        "operationId": "healthcheckUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/apply/createApply": {
+      "post": {
+        "tags": [
+          "apply-controller"
+        ],
+        "summary": "createApply",
+        "operationId": "createApplyUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "applyDto",
+            "description": "applyDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ApplyDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«ApplyDto»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/apply/queryByPage": {
+      "get": {
+        "tags": [
+          "apply-controller"
+        ],
+        "summary": "queryByPage",
+        "operationId": "queryByPageUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "applyUser",
+            "in": "query",
+            "description": "applyUser",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "status",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageVO«ApplyDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/apply/updateStatus": {
+      "post": {
+        "tags": [
+          "apply-controller"
+        ],
+        "summary": "updateStatus",
+        "operationId": "updateStatusUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateApplyStatusDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/appquotas": {
+      "post": {
+        "tags": [
+          "app-quota-controller"
+        ],
+        "summary": "addQuota",
+        "operationId": "addQuotaUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "appQuotaDto",
+            "description": "appQuotaDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AppQuotaDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "app-quota-controller"
+        ],
+        "summary": "updateQuota",
+        "operationId": "updateQuotaUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "appQuotaDto",
+            "description": "appQuotaDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AppQuotaDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/appquotas/all": {
+      "get": {
+        "tags": [
+          "app-quota-controller"
+        ],
+        "summary": "getAllQuotas",
+        "operationId": "getAllQuotasUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«AppQuotaDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/appquotas/appenv": {
+      "get": {
+        "tags": [
+          "app-quota-controller"
+        ],
+        "summary": "findAllAppQuotaByAppAndEnv",
+        "operationId": "findAllAppQuotaByAppAndEnvUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appId",
+            "in": "query",
+            "description": "appId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "envName",
+            "in": "query",
+            "description": "envName",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«AppQuotaDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/appquotas/appenvspec": {
+      "get": {
+        "tags": [
+          "app-quota-controller"
+        ],
+        "summary": "getAppQuotaByAppIdEnvNameAndSpecName",
+        "operationId": "getAppQuotaByAppIdEnvNameAndSpecNameUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appId",
+            "in": "query",
+            "description": "appId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "envName",
+            "in": "query",
+            "description": "envName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "spectypeName",
+            "in": "query",
+            "description": "spectypeName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AppQuotaDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/appquotas/condition": {
+      "get": {
+        "tags": [
+          "app-quota-controller"
+        ],
+        "summary": "findAppQuotaByCondition",
+        "operationId": "findAppQuotaByConditionUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "appId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "envId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«AppQuotaDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/appquotas/page": {
+      "get": {
+        "tags": [
+          "app-quota-controller"
+        ],
+        "summary": "getQuotasByPage",
+        "operationId": "getQuotasByPageUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«AppQuotaDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/appquotas/{appQuotaId}": {
+      "delete": {
+        "tags": [
+          "app-quota-controller"
+        ],
+        "summary": "deleteAppQuota",
+        "operationId": "deleteAppQuotaUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appQuotaId",
+            "in": "path",
+            "description": "appQuotaId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/web/apps": {
+      "post": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "addApp",
+        "operationId": "addAppUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "appDto",
+            "description": "appDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AppDtoPlus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AppDtoPlus»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "updateApp",
+        "operationId": "updateAppUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "appDto",
+            "description": "appDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AppDtoPlus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AppDtoPlus»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/apps/all": {
+      "get": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "getAllApps",
+        "operationId": "getAllAppsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "orgId",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«AppDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/apps/all/appplus": {
+      "get": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "getAllAppPluss",
+        "operationId": "getAllAppPlussUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "orgId",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«AppDtoPlus»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/apps/app/{appId}": {
+      "get": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "getAppByAppId",
+        "operationId": "getAppByAppIdUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appId",
+            "in": "path",
+            "description": "appId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«AppDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/apps/appmanager": {
+      "get": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "updateAppManager",
+        "operationId": "updateAppManagerUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "managerQuery",
+            "description": "managerQuery",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AppManagerQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«boolean»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/apps/appname": {
+      "get": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "findAppByAppName",
+        "operationId": "findAppByAppNameUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appName",
+            "in": "query",
+            "description": "appName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«AppDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/apps/condition/plus": {
+      "get": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "getAppPlusByConditions",
+        "operationId": "getAppPlusByConditionsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "appId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "developers",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«AppDtoPlus»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/apps/fuzzy/appname": {
+      "get": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "fuzzySearchAppsByAppName",
+        "operationId": "fuzzySearchAppsByAppNameUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appName",
+            "in": "query",
+            "description": "appName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«AppDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/apps/page/plus": {
+      "get": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "getAppPlusByPage",
+        "operationId": "getAppPlusByPageUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«AppDtoPlus»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/apps/username": {
+      "get": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "findAppsByUserName",
+        "operationId": "findAppsByUserNameUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«AppDtoPlus»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/apps/{appId}": {
+      "delete": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "deleteApp",
+        "operationId": "deleteAppUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appId",
+            "in": "path",
+            "description": "appId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/web/envs": {
+      "post": {
+        "tags": [
+          "env-controller"
+        ],
+        "summary": "createEnv",
+        "operationId": "createEnvUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "envDto",
+            "description": "envDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EnvDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«EnvDto»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "env-controller"
+        ],
+        "summary": "updateEnv",
+        "operationId": "updateEnvUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "envDto",
+            "description": "envDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EnvDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«EnvDto»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/envs/all": {
+      "get": {
+        "tags": [
+          "env-controller"
+        ],
+        "summary": "getAllEnvs",
+        "operationId": "getAllEnvsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«EnvDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/envs/page": {
+      "get": {
+        "tags": [
+          "env-controller"
+        ],
+        "summary": "getEnvsInPage",
+        "operationId": "getEnvsInPageUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«EnvDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/envs/{envId}": {
+      "get": {
+        "tags": [
+          "env-controller"
+        ],
+        "summary": "getEnvById",
+        "operationId": "getEnvByIdUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "description": "envId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«EnvDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "env-controller"
+        ],
+        "summary": "deleteEnv",
+        "operationId": "deleteEnvUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "envId",
+            "in": "path",
+            "description": "envId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/web/orgs": {
+      "post": {
+        "tags": [
+          "org-controller"
+        ],
+        "summary": "addOrg",
+        "operationId": "addOrgUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "orgDto",
+            "description": "orgDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrgDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«OrgDto»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "org-controller"
+        ],
+        "summary": "updateOrg",
+        "operationId": "updateOrgUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "orgDto",
+            "description": "orgDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrgDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«OrgDto»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/orgs/all": {
+      "get": {
+        "tags": [
+          "org-controller"
+        ],
+        "summary": "getAllOrgs",
+        "operationId": "getAllOrgsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«OrgDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/orgs/condition": {
+      "get": {
+        "tags": [
+          "org-controller"
+        ],
+        "summary": "getOrgsByCondition",
+        "operationId": "getOrgsByConditionUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userWorkNumber",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«OrgDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/orgs/page": {
+      "get": {
+        "tags": [
+          "org-controller"
+        ],
+        "summary": "getOrgsByPage",
+        "operationId": "getOrgsByPageUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«OrgDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/orgs/{orgId}": {
+      "get": {
+        "tags": [
+          "org-controller"
+        ],
+        "summary": "getOrgById",
+        "operationId": "getOrgByIdUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "orgId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«OrgDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "org-controller"
+        ],
+        "summary": "deleteOrg",
+        "operationId": "deleteOrgUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "orgId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/web/quotas": {
+      "post": {
+        "tags": [
+          "quota-controller"
+        ],
+        "summary": "addQuota",
+        "operationId": "addQuotaUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "quotaDtoPlus",
+            "description": "quotaDtoPlus",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/QuotaDtoPlus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«QuotaDtoPlus»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "quota-controller"
+        ],
+        "summary": "updateQuota",
+        "operationId": "updateQuotaUsingPUT_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "quotaDtoPlus",
+            "description": "quotaDtoPlus",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/QuotaDtoPlus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«QuotaDtoPlus»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/quotas/all": {
+      "get": {
+        "tags": [
+          "quota-controller"
+        ],
+        "summary": "getAllQuotas",
+        "operationId": "getAllQuotasUsingGET_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«QuotaDtoPlus»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/quotas/condition": {
+      "get": {
+        "tags": [
+          "quota-controller"
+        ],
+        "summary": "getQuotasByCondition",
+        "operationId": "getQuotasByConditionUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "orgName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "envId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«QuotaDtoPlus»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/quotas/page": {
+      "get": {
+        "tags": [
+          "quota-controller"
+        ],
+        "summary": "getQuotasByPage",
+        "operationId": "getQuotasByPageUsingGET_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«QuotaDtoPlus»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/quotas/queryquota": {
+      "get": {
+        "tags": [
+          "quota-controller"
+        ],
+        "summary": "getQuotaByOrgEnvSpec",
+        "operationId": "getQuotaByOrgEnvSpecUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "orgCode",
+            "in": "query",
+            "description": "orgCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "envName",
+            "in": "query",
+            "description": "envName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "specName",
+            "in": "query",
+            "description": "specName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«QuotaDtoPlus»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/quotas/quota": {
+      "get": {
+        "tags": [
+          "quota-controller"
+        ],
+        "summary": "getQuotaByEnvAndOrg",
+        "operationId": "getQuotaByEnvAndOrgUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "orgCode",
+            "in": "query",
+            "description": "orgCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "envName",
+            "in": "query",
+            "description": "envName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "specName",
+            "in": "query",
+            "description": "specName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«QuotaDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/quotas/{quotaId}": {
+      "get": {
+        "tags": [
+          "quota-controller"
+        ],
+        "summary": "getQuotaById",
+        "operationId": "getQuotaByIdUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "quotaId",
+            "in": "path",
+            "description": "quotaId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«QuotaDtoPlus»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "quota-controller"
+        ],
+        "summary": "deleteQuota",
+        "operationId": "deleteQuotaUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "quotaId",
+            "in": "path",
+            "description": "quotaId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/web/roles": {
+      "post": {
+        "tags": [
+          "role-controller"
+        ],
+        "summary": "addRole",
+        "operationId": "addRoleUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "roleDto",
+            "description": "roleDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoleDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«RoleDto»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "role-controller"
+        ],
+        "summary": "updateRole",
+        "operationId": "updateRoleUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "roleDto",
+            "description": "roleDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoleDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«RoleDto»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/roles/all": {
+      "get": {
+        "tags": [
+          "role-controller"
+        ],
+        "summary": "getAllRoles",
+        "operationId": "getAllRolesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«RoleDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/roles/condition": {
+      "get": {
+        "tags": [
+          "role-controller"
+        ],
+        "summary": "getRoleByCondition",
+        "operationId": "getRoleByConditionUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«RoleDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/roles/page": {
+      "get": {
+        "tags": [
+          "role-controller"
+        ],
+        "summary": "getRoleByPage",
+        "operationId": "getRoleByPageUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«RoleDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/roles/{roleId}": {
+      "get": {
+        "tags": [
+          "role-controller"
+        ],
+        "summary": "getRoleById",
+        "operationId": "getRoleByIdUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "description": "roleId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«RoleDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "role-controller"
+        ],
+        "summary": "deleteRole",
+        "operationId": "deleteRoleUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "description": "roleId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/web/specTypes": {
+      "post": {
+        "tags": [
+          "spec-type-controller"
+        ],
+        "summary": "addSpecType",
+        "operationId": "addSpecTypeUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "specTypeDto",
+            "description": "specTypeDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SpecTypeDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«SpecTypeDto»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "spec-type-controller"
+        ],
+        "summary": "updateSpecType",
+        "operationId": "updateSpecTypeUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "specTypeDto",
+            "description": "specTypeDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SpecTypeDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«SpecTypeDto»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/specTypes/all": {
+      "get": {
+        "tags": [
+          "spec-type-controller"
+        ],
+        "summary": "getAllSpecTypes",
+        "operationId": "getAllSpecTypesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«SpecTypeDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/specTypes/condition": {
+      "get": {
+        "tags": [
+          "spec-type-controller"
+        ],
+        "summary": "getSpecTypeByCondition",
+        "operationId": "getSpecTypeByConditionUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cpu",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          },
+          {
+            "name": "memory",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          },
+          {
+            "name": "disk",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«SpecTypeDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/specTypes/page": {
+      "get": {
+        "tags": [
+          "spec-type-controller"
+        ],
+        "summary": "getSpecTypeByPage",
+        "operationId": "getSpecTypeByPageUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«SpecTypeDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/specTypes/{specTypeId}": {
+      "get": {
+        "tags": [
+          "spec-type-controller"
+        ],
+        "summary": "getSpecTypeById",
+        "operationId": "getSpecTypeByIdUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "specTypeId",
+            "in": "path",
+            "description": "specTypeId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«SpecTypeDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "spec-type-controller"
+        ],
+        "summary": "deleteSpecType",
+        "operationId": "deleteSpecTypeUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "specTypeId",
+            "in": "path",
+            "description": "specTypeId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/web/userexts": {
+      "get": {
+        "tags": [
+          "user-ext-controller"
+        ],
+        "summary": "getUserExtDtoByWorkNumber",
+        "operationId": "getUserExtDtoByWorkNumberUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "workNumber",
+            "in": "query",
+            "description": "workNumber",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«UserExtDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "user-ext-controller"
+        ],
+        "summary": "addUserExt",
+        "operationId": "addUserExtUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "userExtDto",
+            "description": "userExtDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserExtDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/userroles": {
+      "put": {
+        "tags": [
+          "user-role-controller"
+        ],
+        "summary": "updateUserRole",
+        "operationId": "updateUserRoleUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "userRoleDto",
+            "description": "userRoleDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRoleDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«UserRoleDto»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/userroles/all": {
+      "get": {
+        "tags": [
+          "user-role-controller"
+        ],
+        "summary": "getAllUsers",
+        "operationId": "getAllUsersUsingGET_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«UserRoleDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/userroles/name/{userName}": {
+      "get": {
+        "tags": [
+          "user-role-controller"
+        ],
+        "summary": "getRolesByUserName",
+        "operationId": "getRolesByUserNameUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userName",
+            "in": "path",
+            "description": "userName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«string»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/userroles/page": {
+      "get": {
+        "tags": [
+          "user-role-controller"
+        ],
+        "summary": "getUserRoleByPage",
+        "operationId": "getUserRoleByPageUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«UserRoleDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/userroles/roles/{userWorkNumber}": {
+      "get": {
+        "tags": [
+          "user-role-controller"
+        ],
+        "summary": "getRolesByUserId",
+        "operationId": "getRolesByUserIdUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userWorkNumber",
+            "in": "path",
+            "description": "userWorkNumber",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«RoleDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/userroles/{userRoleId}": {
+      "get": {
+        "tags": [
+          "user-role-controller"
+        ],
+        "summary": "getUserRoleById",
+        "operationId": "getUserRoleByIdUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userRoleId",
+            "in": "path",
+            "description": "userRoleId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«UserRoleDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "user-role-controller"
+        ],
+        "summary": "deleteUserRole",
+        "operationId": "deleteUserRoleUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userRoleId",
+            "in": "path",
+            "description": "userRoleId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/web/userroles/{userWorkNumber}": {
+      "post": {
+        "tags": [
+          "user-role-controller"
+        ],
+        "summary": "addUserRole",
+        "operationId": "addUserRoleUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userWorkNumber",
+            "in": "path",
+            "description": "userWorkNumber",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "roleIds",
+            "description": "roleIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/users": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "addUser",
+        "operationId": "addUserUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "userDto",
+            "description": "userDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "updateUser",
+        "operationId": "updateUserUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "userDto",
+            "description": "userDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«UserDto»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/users/all": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "getAllUsers",
+        "operationId": "getAllUsersUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«UserDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/users/condition": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "getUserByCondition",
+        "operationId": "getUserByConditionUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "realName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orgCode",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«UserDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/users/fuzzy/username": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "fuzzySearchUsersByUserName",
+        "operationId": "fuzzySearchUsersByUserNameUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userName",
+            "in": "query",
+            "description": "userName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«UserDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/users/page": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "getUserByPage",
+        "operationId": "getUserByPageUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto«UserDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/users/userid/{userId}": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "getUserById",
+        "operationId": "getUserByIdUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«UserDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/users/username/{userName}": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "findUserByUserName",
+        "operationId": "findUserByUserNameUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userName",
+            "in": "path",
+            "description": "userName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«UserDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/users/{userId}": {
+      "delete": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "deleteUser",
+        "operationId": "deleteUserUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/web/zones": {
+      "post": {
+        "tags": [
+          "zone-controller"
+        ],
+        "summary": "createZone",
+        "operationId": "createZoneUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "zoneDto",
+            "description": "zoneDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ZoneDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«ZoneDto»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "zone-controller"
+        ],
+        "summary": "updateZone",
+        "operationId": "updateZoneUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "zoneDto",
+            "description": "zoneDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ZoneDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«ZoneDto»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/zones/all": {
+      "get": {
+        "tags": [
+          "zone-controller"
+        ],
+        "summary": "getAllZones",
+        "operationId": "getAllZonesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«ZoneDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/zones/condition": {
+      "get": {
+        "tags": [
+          "zone-controller"
+        ],
+        "summary": "searchZonesByEnvAndName",
+        "operationId": "searchZonesByEnvAndNameUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "envName",
+            "in": "query",
+            "description": "envName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "zoneName",
+            "in": "query",
+            "description": "zoneName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/zones/getByEnv": {
+      "get": {
+        "tags": [
+          "zone-controller"
+        ],
+        "summary": "getByEnv",
+        "operationId": "getByEnvUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "env",
+            "in": "query",
+            "description": "env",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«List«ZoneDto»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/zones/page": {
+      "get": {
+        "tags": [
+          "zone-controller"
+        ],
+        "summary": "getZonesInPage",
+        "operationId": "getZonesInPageUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«PageDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/web/zones/{zoneId}": {
+      "get": {
+        "tags": [
+          "zone-controller"
+        ],
+        "summary": "getZoneById",
+        "operationId": "getZoneByIdUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "zoneId",
+            "in": "path",
+            "description": "zoneId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«ZoneDto»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "zone-controller"
+        ],
+        "summary": "deleteZone",
+        "operationId": "deleteZoneUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "zoneId",
+            "in": "path",
+            "description": "zoneId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AppDto": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "appId": {
+          "type": "string"
+        },
+        "appLevel": {
+          "type": "string"
+        },
+        "appType": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "enableHa": {
+          "type": "boolean"
+        },
+        "envUrls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnvUrl"
+          }
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "healthUrl": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "influenceScope": {
+          "type": "string"
+        },
+        "insertBy": {
+          "type": "string"
+        },
+        "insertTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "type": "string"
+        },
+        "orgDto": {
+          "$ref": "#/definitions/OrgDto"
+        },
+        "orgId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "serviceType": {
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "userDto": {
+          "$ref": "#/definitions/UserDto"
+        },
+        "userWorkNumber": {
+          "type": "string"
+        },
+        "zoneType": {
+          "type": "string"
+        }
+      }
+    },
+    "AppDtoPlus": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "appId": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "developers": {
+          "type": "string"
+        },
+        "enableHa": {
+          "type": "boolean"
+        },
+        "envUrls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnvUrl"
+          }
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "insertBy": {
+          "type": "string"
+        },
+        "insertTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "type": "string"
+        },
+        "orgDto": {
+          "$ref": "#/definitions/OrgDto"
+        },
+        "orgId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "testUserDtos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserDto"
+          }
+        },
+        "tests": {
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "userDtos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserDto"
+          }
+        },
+        "zoneType": {
+          "type": "string"
+        }
+      }
+    },
+    "AppManagerQuery": {
+      "type": "object",
+      "properties": {
+        "appId": {
+          "type": "string"
+        },
+        "developers": {
+          "type": "string"
+        },
+        "testers": {
+          "type": "string"
+        }
+      }
+    },
+    "AppQuotaDto": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "appId": {
+          "type": "string"
+        },
+        "appName": {
+          "type": "string"
+        },
+        "envId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "envName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "insertBy": {
+          "type": "string"
+        },
+        "insertTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "orgId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "orgName": {
+          "type": "string"
+        },
+        "spectypeId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "spectypeName": {
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ApplyDto": {
+      "type": "object",
+      "properties": {
+        "applyDepartment": {
+          "type": "string"
+        },
+        "applyTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "applyUser": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "opUser": {
+          "type": "string"
+        },
+        "request": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "EnvDto": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "consul": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "dns": {
+          "type": "string"
+        },
+        "dockeryard": {
+          "type": "string"
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "insertBy": {
+          "type": "string"
+        },
+        "insertTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nginx": {
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "zones": {
+          "type": "string"
+        }
+      }
+    },
+    "EnvUrl": {
+      "type": "object",
+      "properties": {
+        "envName": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "OrgDto": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "insertBy": {
+          "type": "string"
+        },
+        "insertTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "type": "string"
+        },
+        "orgCode": {
+          "type": "string"
+        },
+        "parentOrgId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "userDto": {
+          "$ref": "#/definitions/UserDto"
+        },
+        "userWorkNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "PageDto": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PageDto«AppDtoPlus»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppDtoPlus"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PageDto«AppQuotaDto»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppQuotaDto"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PageDto«EnvDto»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnvDto"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PageDto«OrgDto»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrgDto"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PageDto«QuotaDtoPlus»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/QuotaDtoPlus"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PageDto«RoleDto»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RoleDto"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PageDto«SpecTypeDto»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SpecTypeDto"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PageDto«UserDto»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserDto"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PageDto«UserRoleDto»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserRoleDto"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PageVO«ApplyDto»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ApplyDto"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "QuotaDto": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "balance": {
+          "type": "number",
+          "format": "float"
+        },
+        "description": {
+          "type": "string"
+        },
+        "envDto": {
+          "$ref": "#/definitions/EnvDto"
+        },
+        "envId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "insertBy": {
+          "type": "string"
+        },
+        "insertTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "limit": {
+          "type": "number",
+          "format": "float"
+        },
+        "orgDto": {
+          "$ref": "#/definitions/OrgDto"
+        },
+        "orgId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "orgName": {
+          "type": "string"
+        },
+        "specTypeDto": {
+          "$ref": "#/definitions/SpecTypeDto"
+        },
+        "specTypeId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "QuotaDtoPlus": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "cpu": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "description": {
+          "type": "string"
+        },
+        "disk": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "envDto": {
+          "$ref": "#/definitions/EnvDto"
+        },
+        "envId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "insertBy": {
+          "type": "string"
+        },
+        "insertTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "memory": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "orgDto": {
+          "$ref": "#/definitions/OrgDto"
+        },
+        "orgId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "orgName": {
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Response«AppDtoPlus»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/AppDtoPlus"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«AppDto»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/AppDto"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«AppQuotaDto»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/AppQuotaDto"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«ApplyDto»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "details": {
+          "$ref": "#/definitions/ApplyDto"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«EnvDto»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/EnvDto"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«List«AppDtoPlus»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppDtoPlus"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«List«AppDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppDto"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«List«AppQuotaDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppQuotaDto"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«List«EnvDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnvDto"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«List«OrgDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrgDto"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«List«QuotaDtoPlus»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/QuotaDtoPlus"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«List«RoleDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RoleDto"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«List«SpecTypeDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SpecTypeDto"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«List«UserDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserDto"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«List«UserRoleDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserRoleDto"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«List«ZoneDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ZoneDto"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«List«string»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«OrgDto»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/OrgDto"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«PageDto«AppDtoPlus»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/PageDto«AppDtoPlus»"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«PageDto«AppQuotaDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/PageDto«AppQuotaDto»"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«PageDto«EnvDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/PageDto«EnvDto»"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«PageDto«OrgDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/PageDto«OrgDto»"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«PageDto«QuotaDtoPlus»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/PageDto«QuotaDtoPlus»"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«PageDto«RoleDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/PageDto«RoleDto»"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«PageDto«SpecTypeDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/PageDto«SpecTypeDto»"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«PageDto«UserDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/PageDto«UserDto»"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«PageDto«UserRoleDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/PageDto«UserRoleDto»"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«PageDto»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/PageDto"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«PageVO«ApplyDto»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "details": {
+          "$ref": "#/definitions/PageVO«ApplyDto»"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«QuotaDtoPlus»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/QuotaDtoPlus"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«QuotaDto»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/QuotaDto"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«RoleDto»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/RoleDto"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«SpecTypeDto»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/SpecTypeDto"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«UserDto»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/UserDto"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«UserExtDto»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/UserExtDto"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«UserRoleDto»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/UserRoleDto"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«ZoneDto»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "$ref": "#/definitions/ZoneDto"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«boolean»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response«string»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "RoleDto": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "insertBy": {
+          "type": "string"
+        },
+        "insertTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "SpecTypeDto": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "cpu": {
+          "type": "number",
+          "format": "float"
+        },
+        "description": {
+          "type": "string"
+        },
+        "disk": {
+          "type": "number",
+          "format": "float"
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "insertBy": {
+          "type": "string"
+        },
+        "insertTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "memory": {
+          "type": "number",
+          "format": "float"
+        },
+        "name": {
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "UpdateApplyStatusDto": {
+      "type": "object",
+      "properties": {
+        "applyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "opUser": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "UserDto": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "email": {
+          "type": "string"
+        },
+        "extensions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "insertBy": {
+          "type": "string"
+        },
+        "insertTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastVisitAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ldapInsertTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ldapUpdateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "orgDto": {
+          "$ref": "#/definitions/OrgDto"
+        },
+        "orgId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "realName": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RoleDto"
+          }
+        },
+        "source": {
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "workNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "UserExtDto": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "insertBy": {
+          "type": "string"
+        },
+        "insertTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "orgId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "userWorkNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "UserRoleDto": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "insertBy": {
+          "type": "string"
+        },
+        "insertTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "userWorkNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "ZoneDto": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "envId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "envName": {
+          "type": "string"
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "insertBy": {
+          "type": "string"
+        },
+        "insertTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "k8s": {
+          "type": "string"
+        },
+        "k8sVersion": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

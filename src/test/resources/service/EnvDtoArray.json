@@ -1,0 +1,92 @@
+[
+  {
+    "name": "testEnv1",
+    "registryCenterId": 1,
+    "registryCenterDto": {
+      "id": 1,
+      "name": "registryCenter1",
+      "extensions": {
+        "c1": "v1",
+        "c2": "v2"
+      },
+      "description": "just for test"
+    },
+    "cloudId": 1,
+    "cloudDto": {
+      "id": 1,
+      "name": "cloud1",
+      "galaxy": "/url1",
+      "extensions": {
+        "c1": "v1",
+        "c2": "v2"
+      },
+      "description": "just for test"
+    },
+    "cloudName": "cloud1",
+    "extensions": {
+      "c1": "v1",
+      "c2": "v2"
+    },
+    "description": "just for test"
+  },
+  {
+    "name": "testEnv2",
+    "registryCenterId": 2,
+    "registryCenterDto": {
+      "id": 2,
+      "name": "registryCenter2",
+      "extensions": {
+        "c1": "v1",
+        "c2": "v2"
+      },
+      "description": "just for test"
+    },
+    "cloudId": 2,
+    "cloudDto": {
+      "id": 2,
+      "name": "cloud2",
+      "galaxy": "/url2",
+      "extensions": {
+        "c1": "v1",
+        "c2": "v2"
+      },
+      "description": "just for test"
+    },
+    "cloudName": "cloud2",
+    "extensions": {
+      "c3": "v3",
+      "c4": "v4"
+    },
+    "description": "just for test"
+  },
+  {
+    "name": "testEnv3",
+    "registryCenterId": 3,
+    "registryCenterDto": {
+      "id": 3,
+      "name": "registryCenter3",
+      "extensions": {
+        "c1": "v1",
+        "c2": "v2"
+      },
+      "description": "just for test"
+    },
+    "cloudId": 3,
+    "cloudDto": {
+      "id": 3,
+      "name": "cloud3",
+      "galaxy": "/url3",
+      "extensions": {
+        "c1": "v1",
+        "c2": "v2"
+      },
+      "description": "just for test"
+    },
+    "cloudName": "cloud3",
+    "extensions": {
+      "c5": "v5",
+      "c6": "v6"
+    },
+    "description": "just for test"
+  }
+]

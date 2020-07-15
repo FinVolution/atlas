@@ -1,0 +1,56 @@
+[
+  {
+    "name": "app1",
+    "appId": 1,
+    "appType": "IIS",
+    "appLevel": "level1",
+    "influenceScope": "scope1",
+    "healthUrl": "/healthUrl1",
+    "serviceType": "type1",
+    "orgId": 1,
+    "orgName": "org1",
+    "ownerUsername": "xia",
+    "ownRealName": "tianxiaoxia",
+    "extensions": {
+      "c1": "v1",
+      "c2": "v2"
+    },
+    "description": "just for test1"
+  },
+  {
+    "name": "app2",
+    "appId": 2,
+    "appType": "IIS",
+    "appLevel": "level2",
+    "influenceScope": "scope2",
+    "healthUrl": "/healthUrl2",
+    "serviceType": "type1",
+    "orgId": 2,
+    "orgName": "org2",
+    "ownerUsername": "xia",
+    "ownRealName": "tianxiaoxia",
+    "extensions": {
+      "c3": "v3",
+      "c4": "v4"
+    },
+    "description": "just for test1"
+  },
+  {
+    "name": "app3",
+    "appId": 3,
+    "appType": "IIS",
+    "appLevel": "level3",
+    "influenceScope": "scope3",
+    "healthUrl": "/healthUrl3",
+    "serviceType": "type1",
+    "orgId": 3,
+    "orgName": "org3",
+    "ownerUsername": "xia",
+    "ownRealName": "tianxiaoxia",
+    "extensions": {
+      "c5": "v5",
+      "c6": "v6"
+    },
+    "description": "just for test1"
+  }
+]

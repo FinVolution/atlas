@@ -1,0 +1,23 @@
+{
+  "realName": "user1",
+  "userName": "user1",
+  "workNumber": "1",
+  "orgId": 1,
+  "orgDto": {
+    "name": "org1",
+    "parentOrgId": 1,
+    "ownerUserName": "xia",
+    "ownerRealName": "tianxiaoxia",
+    "extensions": {
+      "c1": "v1",
+      "c2": "v2"
+    },
+    "description": "just for test"
+  },
+  "email": "xx#@12.com",
+  "extensions": {
+    "c1": "v1",
+    "c2": "v2"
+  },
+  "description": "just for test"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "role1",
+  "extensions": {
+    "c1": "v1",
+    "c2": "v2"
+  },
+  "description": "just for test"
+}

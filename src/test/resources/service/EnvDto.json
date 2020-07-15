@@ -1,0 +1,28 @@
+{
+  "name": "testEnv1",
+  "registryCenterId": 1,
+  "registryCenterDto": {
+    "name": "registryCenter1",
+    "extensions": {
+      "c1": "v1",
+      "c2": "v2"
+    },
+    "description": "just for test"
+  },
+  "cloudId": 1,
+  "cloudDto": {
+    "name": "cloud1",
+    "galaxy": "/url1",
+    "extensions": {
+      "c1": "v1",
+      "c2": "v2"
+    },
+    "description": "just for test"
+  },
+  "cloudName": "cloud1",
+  "extensions": {
+    "c1": "v1",
+    "c2": "v2"
+  },
+  "description": "just for test"
+}
