@@ -21,19 +21,10 @@ import java.util.Arrays;
 @EnableSwagger2
 public class SwaggerConfiguration {
 
-    @Value("${com.ppdai.appId}")
-    private String appId;
-    @Value("${spring.application.name}")
-    private String serviceName;
-    @Value("${info.app.version}")
-    private String version;
-
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title(serviceName)
-                .version(version)
-                .extensions(Arrays.asList(new StringVendorExtension("x-appId", appId),
-                        new StringVendorExtension("x-serviceName", serviceName)))
+                .title("atlas")
+                .version("1.0.0")
                 .build();
     }
 
