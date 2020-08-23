@@ -109,7 +109,7 @@
         <dependency>
             <groupId>com.ppdai.auth</groupId>
             <artifactId>pauth-spring-support</artifactId>
-            <version>1.2.6</version>
+            <version>1.2.8</version>
         </dependency>
         <dependency>
             <groupId>net.sf.dozer</groupId>
@@ -214,6 +214,29 @@
                                 <dateLibrary>joda</dateLibrary>
                             </configOptions>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <groupId>com.ppdai.authority</groupId>
+                    <artifactId>authoritymanager</artifactId>
+                    <version>1.1</version>
+                    <packaging>jar</packaging>
+                    <file>${basedir}/dependencies/authoritymanager-1.1.jar</file>
+                    <pomFile>${basedir}/dependencies/authoritymanager-1.1.pom</pomFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install-jar-lib</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>validate</phase>
                     </execution>
                 </executions>
             </plugin>
